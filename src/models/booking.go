@@ -19,5 +19,9 @@ type Booking struct {
 
 // TableName returns the table name of the Booking model.
 func (b *Booking) TableName() string {
-	return "alan-tabeo-test-task.bookings"
+	return "alan_tabeo_test_task.bookings"
 }
+
+//func (b *Booking) Validate() error {
+//	if b
+//}

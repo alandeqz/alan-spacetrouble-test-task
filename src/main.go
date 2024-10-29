@@ -1,12 +1,13 @@
 package main
 
 import (
+	"alan-tabeo-test-task/src/config"
+	"alan-tabeo-test-task/src/drivers"
+	"alan-tabeo-test-task/src/models"
+	"alan-tabeo-test-task/src/services"
 	"context"
 	"embed"
 	"log/slog"
-
-	"alan-tabeo-test-task/src/config"
-	"alan-tabeo-test-task/src/drivers"
 )
 
 //go:embed migrations/*.sql
@@ -36,4 +37,8 @@ func main() {
 	defer func() {
 		_ = postgreSQL.Connection.Close()
 	}()
+
+	bookingsRepository := models.NewBookingRepository(postgreSQL.DB)
+
+	bookingsService := services.NewBookingService(bookingsRepository)
 }
