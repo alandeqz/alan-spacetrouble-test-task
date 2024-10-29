@@ -1,13 +1,20 @@
 package main
 
 import (
-	"alan-tabeo-test-task/src/config"
-	"alan-tabeo-test-task/src/drivers"
-	"alan-tabeo-test-task/src/models"
-	"alan-tabeo-test-task/src/services"
 	"context"
 	"embed"
+	"fmt"
 	"log/slog"
+
+	"github.com/gin-gonic/gin"
+
+	"alan-tabeo-test-task/src/config"
+	"alan-tabeo-test-task/src/controller"
+	bookingsController "alan-tabeo-test-task/src/controller/booking"
+	"alan-tabeo-test-task/src/drivers"
+	"alan-tabeo-test-task/src/logging"
+	"alan-tabeo-test-task/src/models"
+	"alan-tabeo-test-task/src/services"
 )
 
 //go:embed migrations/*.sql
@@ -38,7 +45,18 @@ func main() {
 		_ = postgreSQL.Connection.Close()
 	}()
 
+	ginServer := gin.Default()
+
 	bookingsRepository := models.NewBookingRepository(postgreSQL.DB)
 
 	bookingsService := services.NewBookingService(bookingsRepository)
+
+	bookingsCtrl := bookingsController.NewBookingController(bookingsService)
+
+	controller.RegisterRoutes(ginServer, bookingsCtrl)
+
+	if err = ginServer.Run(fmt.Sprintf(":%s", cfg.ListenAddress)); err != nil {
+		slog.Error("error while starting the HTTP server", logging.Error, err.Error())
+		return
+	}
 }
