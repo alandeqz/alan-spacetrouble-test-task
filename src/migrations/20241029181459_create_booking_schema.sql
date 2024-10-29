@@ -1,7 +1,9 @@
 -- +goose Up
 -- +goose StatementBegin
 
-CREATE TABLE IF NOT EXISTS "alan-tabeo-test-task"."bookings"
+CREATE SCHEMA IF NOT EXISTS alan_tabeo_test_task;
+
+CREATE TABLE IF NOT EXISTS alan_tabeo_test_task.bookings
 (
     id             BIGSERIAL PRIMARY KEY,
     created_at     TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -15,7 +17,7 @@ CREATE TABLE IF NOT EXISTS "alan-tabeo-test-task"."bookings"
     launch_date    TIMESTAMP WITHOUT TIME ZONE NOT NULL
 );
 
-COMMENT ON COLUMN "alan-tabeo-test-task"."bookings".gender IS 'Unknown=0;Male=1;Female=2;Other=3';
+COMMENT ON COLUMN alan_tabeo_test_task.bookings.gender IS 'Unknown=0;Male=1;Female=2;Other=3';
 
 CREATE OR REPLACE FUNCTION update_updated_at_column()
     RETURNS TRIGGER AS
@@ -28,7 +30,7 @@ $$ language 'plpgsql';
 
 CREATE TRIGGER update_booking_updated_at
     BEFORE UPDATE
-    ON "alan-tabeo-test-task"."bookings"
+    ON alan_tabeo_test_task.bookings
     FOR EACH ROW
 EXECUTE FUNCTION update_updated_at_column();
 
@@ -38,10 +40,10 @@ EXECUTE FUNCTION update_updated_at_column();
 -- +goose Down
 -- +goose StatementBegin
 
-DROP TRIGGER IF EXISTS update_booking_updated_at ON "alan-tabeo-test-task"."bookings";
+DROP TRIGGER IF EXISTS update_booking_updated_at ON alan_tabeo_test_task.bookings;
 
 DROP FUNCTION IF EXISTS update_updated_at_column;
 
-DROP TABLE IF EXISTS "alan-tabeo-test-task"."bookings";
+DROP TABLE IF EXISTS alan_tabeo_test_task.bookings;
 
 -- +goose StatementEnd

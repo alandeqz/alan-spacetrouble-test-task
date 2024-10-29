@@ -9,9 +9,9 @@ import (
 )
 
 type Configuration struct {
-	DSN           string `envconfig:"DB_DSN"`                                        // database DSN
-	ListenAddress string `envconfig:"LISTEN_ADDR" default:"8080"`                    // HTTP listen address
-	SchemaName    string `envconfig:"DB_SCHEMA_NAME" default:"alan-tabeo-test-task"` // database schema name
+	DSN           string `envconfig:"DB_DSN" default:"host=localhost port=5432 user=myuser password=mypassword dbname=mydatabase sslmode=disable"` // database DSN
+	ListenAddress string `envconfig:"LISTEN_ADDR" default:"8080"`                                                                                  // HTTP listen address
+	SchemaName    string `envconfig:"DB_SCHEMA_NAME" default:"alan_tabeo_test_task"`                                                               // database schema name
 }
 
 // NewConfiguration creates and returns a new configuration object.

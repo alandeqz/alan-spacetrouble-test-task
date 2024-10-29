@@ -43,6 +43,10 @@ func InitPostgreSQL(_ context.Context, cfg *config.Configuration, baseFS embed.F
 
 	slog.Info("successfully connected to PostgreSQL")
 
+	if res := db.Exec(fmt.Sprintf("CREATE SCHEMA IF NOT EXISTS %s", cfg.SchemaName)); res.Error != nil {
+		slog.Error("failed to create the schema", logging.Error, res.Error)
+	}
+
 	if err = runMigrations(connection, cfg.SchemaName, "migrations", baseFS); err != nil {
 		return nil, err
 	}
