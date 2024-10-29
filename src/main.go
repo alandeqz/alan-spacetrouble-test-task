@@ -2,11 +2,15 @@ package main
 
 import (
 	"context"
+	"embed"
 	"log/slog"
 
 	"alan-tabeo-test-task/src/config"
 	"alan-tabeo-test-task/src/drivers"
 )
+
+//go:embed migrations/*.sql
+var embedMigrations embed.FS
 
 func main() {
 	slog.Info("starting the application")
@@ -24,7 +28,7 @@ func main() {
 
 	defer cancel()
 
-	postgreSQL, err := drivers.InitPostgreSQL(ctx, cfg.DSN)
+	postgreSQL, err := drivers.InitPostgreSQL(ctx, cfg, embedMigrations)
 	if err != nil {
 		return
 	}
