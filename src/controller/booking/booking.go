@@ -23,7 +23,7 @@ func NewBookingController(
 }
 
 func (bc *BookingController) CreateBooking(c *gin.Context) {
-	var booking *models.Booking
+	booking := new(models.Booking)
 
 	if err := c.ShouldBindJSON(booking); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
