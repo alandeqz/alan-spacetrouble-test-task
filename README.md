@@ -1,6 +1,6 @@
 # Alan SpaceTrouble Test Task
 
-This repository contains the test task for the position of a Backend Developer at SpaceTrouble.
+This repository contains the test task for the position of a Backend Developer.
 
 Author: Alan Seksenali
 
@@ -22,4 +22,5 @@ Author: Alan Seksenali
    make run
    ```
 
-After the containers are up and running, one can access the documentation of the API endpoints at http://localhost:8080/v1/swagger/index.html.
+After the containers are up and running, one can access the documentation of the API endpoints
+at http://localhost:8080/v1/swagger/index.html.
