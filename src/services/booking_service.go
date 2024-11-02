@@ -49,7 +49,7 @@ func (bs *BookingService) CreateBooking(ctx context.Context, booking *models.Boo
 		return err
 	}
 
-	if bookingForLaunchpad == nil {
+	if bookingForLaunchpad != nil {
 		return errors.ErrBookingAlreadyExists
 	}
 
@@ -73,7 +73,7 @@ func (bs *BookingService) CreateBooking(ctx context.Context, booking *models.Boo
 		return err
 	}
 
-	if len(bookingsForDestination) == 0 {
+	if len(bookingsForDestination) != 0 {
 		return errors.ErrBookingAlreadyExists
 	}
 

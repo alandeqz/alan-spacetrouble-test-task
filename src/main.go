@@ -15,6 +15,7 @@ import (
 	"alan-tabeo-test-task/src/logging"
 	"alan-tabeo-test-task/src/models"
 	"alan-tabeo-test-task/src/services"
+	"alan-tabeo-test-task/src/services/spacex_client"
 )
 
 //go:embed migrations/*.sql
@@ -49,7 +50,9 @@ func main() {
 
 	bookingsRepository := models.NewBookingRepository(postgreSQL.DB)
 
-	bookingsService := services.NewBookingService(bookingsRepository)
+	spaceXClient := spacex_client.NewSpaceXClient()
+
+	bookingsService := services.NewBookingService(bookingsRepository, spaceXClient)
 
 	bookingsCtrl := bookingsController.NewBookingController(bookingsService)
 

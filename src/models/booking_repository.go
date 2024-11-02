@@ -2,6 +2,7 @@ package models
 
 import (
 	"context"
+	"errors"
 	"log/slog"
 	"time"
 
@@ -87,10 +88,15 @@ func (br *BookingRepository) FindBookingForLaunchpad(_ context.Context, launchpa
 	booking := new(Booking)
 
 	if err := br.DB.
-		Where("launch_date = ?", launchDate).
+		Where("launch_date >= ?", time.Date(launchDate.Year(), launchDate.Month(), launchDate.Day(), 0, 0, 0, 0, time.UTC)).
+		Where("launch_date <= ?", time.Date(launchDate.Year(), launchDate.Month(), launchDate.Day(), 23, 59, 59, 999, time.UTC)).
 		Where("launchpad_id = ?", launchpadID).
 		First(booking).
 		Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, nil
+		}
+
 		return nil, err
 	}
 
@@ -99,15 +105,19 @@ func (br *BookingRepository) FindBookingForLaunchpad(_ context.Context, launchpa
 
 // FindBookingsForDestination finds and returns the list of bookings
 // flying to the specific destination for the passed timeframe.
-func (br *BookingRepository) FindBookingsForDestination(ctx context.Context, destinationID string, from, to time.Time) ([]*Booking, error) {
+func (br *BookingRepository) FindBookingsForDestination(_ context.Context, destinationID string, from, to time.Time) ([]*Booking, error) {
 	bookings := make([]*Booking, 0)
 
 	if err := br.DB.
 		Where("launch_date >= ?", from).
 		Where("launch_date <= ?", to).
 		Where("destination_id = ?", destinationID).
-		First(bookings).
+		Find(&bookings).
 		Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, nil
+		}
+
 		return nil, err
 	}
 
