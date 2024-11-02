@@ -1,9 +1,8 @@
 package booking
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
 
 	"alan-tabeo-test-task/src/models"
 	"alan-tabeo-test-task/src/services"
