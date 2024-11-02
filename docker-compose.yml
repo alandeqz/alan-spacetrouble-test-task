@@ -7,7 +7,7 @@ services:
     environment:
       - DB_DSN=host=db port=5432 user=myuser password=mypassword dbname=mydatabase sslmode=disable
       - LISTEN_ADDR=8080
-      - DB_SCHEMA_NAME=alan_tabeo_test_task
+      - DB_SCHEMA_NAME=alan_spacetrouble_test_task
     depends_on:
       - db
     ports:

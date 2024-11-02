@@ -8,22 +8,22 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"alan-tabeo-test-task/src/config"
-	"alan-tabeo-test-task/src/controller"
-	bookingsController "alan-tabeo-test-task/src/controller/booking"
-	"alan-tabeo-test-task/src/drivers"
-	"alan-tabeo-test-task/src/logging"
-	"alan-tabeo-test-task/src/models"
-	"alan-tabeo-test-task/src/services"
-	"alan-tabeo-test-task/src/services/spacex_client"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/config"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/controller"
+	bookingsController "github.com/alandeqz/alan-spacetrouble-test-task/src/controller/booking"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/drivers"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/logging"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/models"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/services"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/services/spacex_client"
 )
 
 //go:embed migrations/*.sql
 var embedMigrations embed.FS
 
-//	@title			Alan Tabeo Test Task API
+//	@title			Alan SpaceTrouble Test Task API
 //	@version		1.0
-//	@description	This page contains the list of API specifications for the Tabeo test task.
+//	@description	This page contains the list of API specifications for the SpaceTrouble test task.
 //	@host			localhost:8080
 //	@BasePath		/
 func main() {

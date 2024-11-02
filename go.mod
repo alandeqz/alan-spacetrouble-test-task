@@ -1,4 +1,4 @@
-module alan-tabeo-test-task
+module github.com/alandeqz/alan-spacetrouble-test-task
 
 go 1.23
 

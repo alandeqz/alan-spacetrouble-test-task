@@ -11,8 +11,8 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	"alan-tabeo-test-task/src/config"
-	"alan-tabeo-test-task/src/logging"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/config"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/logging"
 )
 
 type PostgreSQL struct {

@@ -8,8 +8,8 @@ import (
 
 	"gorm.io/gorm"
 
-	serviceErrors "alan-tabeo-test-task/src/errors"
-	"alan-tabeo-test-task/src/logging"
+	serviceErrors "github.com/alandeqz/alan-spacetrouble-test-task/src/errors"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/logging"
 )
 
 var _ BookingRepositoryI = &BookingRepository{}

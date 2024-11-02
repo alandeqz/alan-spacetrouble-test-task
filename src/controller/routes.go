@@ -5,8 +5,8 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
-	bookingsController "alan-tabeo-test-task/src/controller/booking"
-	_ "alan-tabeo-test-task/src/docs"
+	bookingsController "github.com/alandeqz/alan-spacetrouble-test-task/src/controller/booking"
+	_ "github.com/alandeqz/alan-spacetrouble-test-task/src/docs"
 )
 
 // RegisterRoutes registers all the routes for the application.

@@ -1,9 +1,9 @@
 -- +goose Up
 -- +goose StatementBegin
 
-CREATE SCHEMA IF NOT EXISTS alan_tabeo_test_task;
+CREATE SCHEMA IF NOT EXISTS alan_spacetrouble_test_task;
 
-CREATE TABLE IF NOT EXISTS alan_tabeo_test_task.bookings
+CREATE TABLE IF NOT EXISTS alan_spacetrouble_test_task.bookings
 (
     id             BIGSERIAL PRIMARY KEY,
     created_at     TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -17,11 +17,11 @@ CREATE TABLE IF NOT EXISTS alan_tabeo_test_task.bookings
     launch_date    TIMESTAMP WITHOUT TIME ZONE NOT NULL
 );
 
-CREATE INDEX IF NOT EXISTS idx_launchpad_launch_date ON alan_tabeo_test_task.bookings (launchpad_id, launch_date);
+CREATE INDEX IF NOT EXISTS idx_launchpad_launch_date ON alan_spacetrouble_test_task.bookings (launchpad_id, launch_date);
 
-CREATE INDEX idx_destination_launch_date ON alan_tabeo_test_task.bookings (destination_id, launch_date);
+CREATE INDEX idx_destination_launch_date ON alan_spacetrouble_test_task.bookings (destination_id, launch_date);
 
-COMMENT ON COLUMN alan_tabeo_test_task.bookings.gender IS 'Unknown=0;Male=1;Female=2;Other=3';
+COMMENT ON COLUMN alan_spacetrouble_test_task.bookings.gender IS 'Unknown=0;Male=1;Female=2;Other=3';
 
 CREATE OR REPLACE FUNCTION update_updated_at_column()
     RETURNS TRIGGER AS
@@ -34,7 +34,7 @@ $$ language 'plpgsql';
 
 CREATE TRIGGER update_booking_updated_at
     BEFORE UPDATE
-    ON alan_tabeo_test_task.bookings
+    ON alan_spacetrouble_test_task.bookings
     FOR EACH ROW
 EXECUTE FUNCTION update_updated_at_column();
 
@@ -44,7 +44,7 @@ EXECUTE FUNCTION update_updated_at_column();
 -- +goose Down
 -- +goose StatementBegin
 
-DROP TRIGGER IF EXISTS update_booking_updated_at ON alan_tabeo_test_task.bookings;
+DROP TRIGGER IF EXISTS update_booking_updated_at ON alan_spacetrouble_test_task.bookings;
 
 DROP FUNCTION IF EXISTS update_updated_at_column;
 
@@ -52,6 +52,6 @@ DROP INDEX IF EXISTS idx_launchpad_launch_date;
 
 DROP INDEX IF EXISTS idx_destination_launch_date;
 
-DROP TABLE IF EXISTS alan_tabeo_test_task.bookings;
+DROP TABLE IF EXISTS alan_spacetrouble_test_task.bookings;
 
 -- +goose StatementEnd

@@ -1,6 +1,6 @@
-# Alan Tabeo Test Task
+# Alan SpaceTrouble Test Task
 
-This repository contains the test task for the position of a Backend Developer at Tabeo.
+This repository contains the test task for the position of a Backend Developer at SpaceTrouble.
 
 Author: Alan Seksenali
 

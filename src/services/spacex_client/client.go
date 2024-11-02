@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"alan-tabeo-test-task/src/logging"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/logging"
 )
 
 const (

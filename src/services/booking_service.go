@@ -5,10 +5,10 @@ import (
 	"log/slog"
 	"time"
 
-	"alan-tabeo-test-task/src/errors"
-	"alan-tabeo-test-task/src/logging"
-	"alan-tabeo-test-task/src/models"
-	"alan-tabeo-test-task/src/services/spacex_client"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/errors"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/logging"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/models"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/services/spacex_client"
 )
 
 var _ BookingServiceI = &BookingService{}

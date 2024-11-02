@@ -91,9 +91,9 @@ definitions:
 host: localhost:8080
 info:
   contact: {}
-  description: This page contains the list of API specifications for the Tabeo test
-    task.
-  title: Alan Tabeo Test Task API
+  description: This page contains the list of API specifications for the SpaceTrouble
+    test task.
+  title: Alan SpaceTrouble Test Task API
   version: "1.0"
 paths:
   /v1/bookings:

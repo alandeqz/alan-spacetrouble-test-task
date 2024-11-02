@@ -3,7 +3,7 @@ package booking
 import (
 	"time"
 
-	"alan-tabeo-test-task/src/models"
+	"github.com/alandeqz/alan-spacetrouble-test-task/src/models"
 )
 
 type BookingRequest struct {
