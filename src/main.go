@@ -21,6 +21,11 @@ import (
 //go:embed migrations/*.sql
 var embedMigrations embed.FS
 
+//	@title			Alan Tabeo Test Task API
+//	@version		1.0
+//	@description	This page contains the list of API specifications for the Tabeo test task.
+//	@host			localhost:8080
+//	@BasePath		/
 func main() {
 	slog.Info("starting the application")
 

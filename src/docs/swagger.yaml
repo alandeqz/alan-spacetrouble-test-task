@@ -1,0 +1,185 @@
+basePath: /
+definitions:
+  booking.BookingRequest:
+    properties:
+      birthday:
+        example: "1999-09-01T00:00:00Z"
+        type: string
+      created_at:
+        example: "2024-10-29T13:55:28.897Z"
+        type: string
+      destination_id:
+        enum:
+        - Mars
+        - Moon
+        - Pluto
+        - Asteroid Belt
+        - Europa
+        - Titan
+        - Ganymede
+        type: string
+      first_name:
+        example: John
+        type: string
+      gender:
+        $ref: '#/definitions/models.Gender'
+      id:
+        example: 9
+        type: integer
+      last_name:
+        example: Doe
+        type: string
+      launch_date:
+        example: "2024-12-01T15:00:00.000Z"
+        type: string
+      launchpad_id:
+        example: "1"
+        type: string
+      updated_at:
+        example: "2024-10-30T12:13:37.374Z"
+        type: string
+    type: object
+  errors.GenericErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  models.Booking:
+    properties:
+      birthday:
+        example: "1999-09-01T00:00:00Z"
+        type: string
+      created_at:
+        example: "2024-10-29T13:55:28.897Z"
+        type: string
+      destination_id:
+        example: "2"
+        type: string
+      first_name:
+        example: John
+        type: string
+      gender:
+        $ref: '#/definitions/models.Gender'
+      id:
+        example: 9
+        type: integer
+      last_name:
+        example: Doe
+        type: string
+      launch_date:
+        example: "2024-12-01T15:00:00.000Z"
+        type: string
+      launchpad_id:
+        example: "1"
+        type: string
+      updated_at:
+        example: "2024-10-30T12:13:37.374Z"
+        type: string
+    type: object
+  models.Gender:
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+    type: integer
+    x-enum-varnames:
+    - Unknown
+    - Male
+    - Female
+    - Other
+host: localhost:8080
+info:
+  contact: {}
+  description: This page contains the list of API specifications for the Tabeo test
+    task.
+  title: Alan Tabeo Test Task API
+  version: "1.0"
+paths:
+  /v1/bookings:
+    get:
+      description: Get all the Bookings for the flights by SpaceTrouble
+      parameters:
+      - description: The limit of the response length
+        in: query
+        name: limit
+        type: integer
+      - description: The offset of the response
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            items:
+              $ref: '#/definitions/models.Booking'
+            type: array
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/errors.GenericErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.GenericErrorResponse'
+      summary: Get the Bookings
+      tags:
+      - Bookings
+    post:
+      consumes:
+      - application/json
+      description: Create the Booking for the flight by SpaceTrouble
+      parameters:
+      - description: New Booking Request
+        in: body
+        name: booking
+        required: true
+        schema:
+          $ref: '#/definitions/booking.BookingRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Booking'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/errors.GenericErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.GenericErrorResponse'
+      summary: Create the Booking
+      tags:
+      - Bookings
+  /v1/bookings/{id}:
+    delete:
+      description: Delete the Booking for the flight by SpaceTrouble
+      parameters:
+      - description: The ID of the Booking
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/errors.GenericErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.GenericErrorResponse'
+      summary: Delete the Booking
+      tags:
+      - Bookings
+swagger: "2.0"

@@ -8,6 +8,7 @@ import (
 
 	"gorm.io/gorm"
 
+	serviceErrors "alan-tabeo-test-task/src/errors"
 	"alan-tabeo-test-task/src/logging"
 )
 
@@ -80,6 +81,18 @@ func (br *BookingRepository) GetAll(_ context.Context, paging *Paging) ([]*Booki
 
 // Delete deletes a booking.
 func (br *BookingRepository) Delete(_ context.Context, id uint64) error {
+	res := br.DB.Where("id = ?", id).Delete(&Booking{})
+
+	if res.Error != nil {
+		slog.Error("failed to delete the booking", logging.Error, res.Error.Error())
+
+		return res.Error
+	}
+
+	if res.RowsAffected == 0 {
+		return serviceErrors.ErrBookingNotFound
+	}
+
 	return nil
 }
 
